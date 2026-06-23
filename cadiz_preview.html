@@ -43,7 +43,133 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 var(--sp);
   border-bottom: 1px solid rgba(29,29,29,0.08);
+  overflow: visible;
 }
+
+/* ── NAV LINKS ── */
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none; margin: 0; padding: 0;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.nav-links > li { position: relative; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--preto); text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 0.45; }
+
+/* ── MEGA MENU ── */
+.mega-menu {
+  position: absolute; left: 0; right: 0; top: 60px;
+  width: 100vw;
+  background: #fff;
+  border-bottom: 1px solid rgba(29,29,29,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s ease;
+  z-index: 99;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.mega-menu.is-open {
+  opacity: 1; pointer-events: auto;
+}
+/* layout: imagem ocupa 50%, colunas os outros 50% */
+.mega-inner {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 280px;   /* altura fixa do megamenu */
+}
+/* imagem: exatamente 50% da largura, altura restrita ao container */
+.mega-img {
+  flex: 0 0 50%;
+  padding: var(--sp);
+  box-sizing: border-box;
+}
+.mega-img-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.mega-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+.mega-img-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.mega-img-title {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+.mega-img-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.mega-img-cta:hover { opacity: 0.6; }
+/* colunas: 50% restante, padding interno */
+.mega-cols {
+  flex: 0 0 50%;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  padding: 36px 48px;
+  box-sizing: border-box;
+}
+.mega-col {
+  display: flex; flex-direction: column; gap: 16px;
+  min-width: 110px;
+}
+.mega-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--castanho); margin: 0 0 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(29,29,29,0.1);
+}
+.mega-col a {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 13px; letter-spacing: 0.04em;
+  color: var(--preto); text-decoration: none;
+  text-transform: none; transition: opacity 0.2s;
+}
+.mega-col a:hover { opacity: 0.45; }
+.mega-ver-tudo {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 9px !important; letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  color: var(--preto) !important;
+  text-decoration: none !important;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+.mega-ver-tudo:hover { opacity: 0.45; }
 .nav-logo {
   font-family: 'Tenor Sans', sans-serif;
   font-size: 20px; letter-spacing: 0.16em; color: var(--preto);
@@ -336,6 +462,54 @@ body {
 <!-- NAV -->
 <nav class="nav">
   <a class="nav-logo" href="#">CADIZ</a>
+
+  <ul class="nav-links">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Coleção Atual</a></li>
+    <li><a href="#">Novidades</a></li>
+    <li class="nav-has-mega"><a href="#">Vestuário</a></li>
+  </ul>
+
+  <div class="mega-menu">
+    <div class="mega-inner">
+      <div class="mega-img">
+        <div class="mega-img-inner">
+          <img src="https://californianina.github.io/cadiz/sobretudo_jacquard_coimbra_1_20260527143342_532b999715da.webp" alt="Vestuário CADIZ">
+          <div class="mega-img-overlay">
+            <p class="mega-img-title">Vestuário</p>
+            <a href="#" class="mega-img-cta">Ver Coleção</a>
+          </div>
+        </div>
+      </div>
+      <div class="mega-cols">
+        <div class="mega-col">
+          <p class="mega-heading">Parte de Cima</p>
+          <a href="#">Blusas</a>
+          <a href="#">Blazers</a>
+          <a href="#" class="mega-ver-tudo">Ver Tudo</a>
+        </div>
+        <div class="mega-col">
+          <p class="mega-heading">Parte de Baixo</p>
+          <a href="#">Calças</a>
+          <a href="#">Shorts</a>
+          <a href="#" class="mega-ver-tudo">Ver Tudo</a>
+        </div>
+        <div class="mega-col">
+          <p class="mega-heading">Peça Única</p>
+          <a href="#">Vestidos</a>
+          <a href="#">Macacões</a>
+          <a href="#" class="mega-ver-tudo">Ver Tudo</a>
+        </div>
+        <div class="mega-col">
+          <p class="mega-heading">Camadas</p>
+          <a href="#">Sobretudos</a>
+          <a href="#">Casacos</a>
+          <a href="#" class="mega-ver-tudo">Ver Tudo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="nav-icons">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
     <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -533,6 +707,29 @@ function update() {
 nextBtn.onclick = () => { if (idx < track.querySelectorAll('.product-card').length - visible()) { idx++; update(); } };
 prevBtn.onclick = () => { if (idx > 0) { idx--; update(); } };
 window.addEventListener('resize', update);
+</script>
+<script>
+(function() {
+  var trigger = document.querySelector('.nav-has-mega');
+  var menu = document.querySelector('.mega-menu');
+  var nav = document.querySelector('.nav');
+  var timer;
+
+  function openMenu() {
+    clearTimeout(timer);
+    menu.classList.add('is-open');
+  }
+  function closeMenu() {
+    timer = setTimeout(function() {
+      menu.classList.remove('is-open');
+    }, 120);
+  }
+
+  trigger.addEventListener('mouseenter', openMenu);
+  trigger.addEventListener('mouseleave', closeMenu);
+  menu.addEventListener('mouseenter', openMenu);
+  menu.addEventListener('mouseleave', closeMenu);
+})();
 </script>
 </body>
 </html>
